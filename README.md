@@ -58,13 +58,34 @@ Correct configuration of route table for each subnets
 
 ## Public and Private subnets with NAT gateway
 
-- Public subnet setup (Proper setup public subnet for resource accessible from the internet)
-- Private subnet setup (Successful creation of private subnet for resources with no direct internet access)
-- Nat Gateway configuration (Correct configuration of a NAT Gateway for private subnet internet access)
+Public subnet setup (Proper setup public subnet for resource accessible from the internet)
+
+- The public subnet requires a route table with an internet gate way
+- Click on the public route table created earlier and click on edit subnet assossiation tab
+- Check the two public subnets to assossiate them with the public route table and save the changes
+
+Private subnet setup (Successful creation of private subnet for resources with no direct internet access)
+
+- For the private subnet, click on the private route table created earlier and click on edit subnet assossiation tab
+- Select the private subnet and save
+
+Nat Gateway configuration (Correct configuration of a NAT Gateway for private subnet internet access)
+
+- At this point the instances in the private subnet has no way of communication with the internet since its route table doesn't have an internet gateway. Hence we would need to attach a NAT Gateway to it. Nat gateway allows for instances in a private subnet to a controlled access the internet
+
+- Click on the Nat gateway tab on the left panel under VPC services
+![Nat gateway tab](/images/nat-gatway-tab.png)
+- Click on create nat gateway button
+![Create nat gateway](/images/Create-nat-gateway.png)
+- Give your nat gateway a descriptive name
+- Select one of the public subnet to create the nat gateway
+- Connectivity type should be public
+- Allocate an Elastic IP address
+- Click on the Create Nat Gateway button and it will be successfully created
 
 ## AWS MYSQL RDS Setup
 
-- RDS instance creation (Proper creation of Amazon RDS instance with MYSQL engine )
+RDS instance creation (Proper creation of Amazon RDS instance with MYSQL engine )
 - Security group configuration
 
 ## Wordpress RDS connection
