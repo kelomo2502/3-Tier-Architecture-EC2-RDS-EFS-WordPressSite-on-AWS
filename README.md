@@ -2,8 +2,22 @@
 
 ## VPC setup
 
-- IP address range definition
+IP address range definition
 
+- We would be using 10.0.0.0/26 for the VPC
+- Subnet A
+CIDR: 10.0.0.0/28
+IP Range: 10.0.0.0 to 10.0.0.15
+Usable IPs: 11
+- Subnet B
+CIDR: 10.0.0.16/28
+IP Range: 10.0.0.16 to 10.0.0.31
+Usable IPs: 11
+- Subnet C
+CIDR: 10.0.0.32/28
+IP Range: 10.0.0.32 to 10.0.0.47
+Usable IPs: 11
+  
 ## VPC Creation
 
 - To create a VPC, log into AWS console and search for VPC from the services balancer
@@ -37,8 +51,10 @@
 Correct configuration of route table for each subnets
 
 - To designate each of the subnets as private or public subnet, we would need to configure two route tables, one with internet gateway while the other will be without internet gateway
-- Make the route table public editing its routes and giving it acces to the internet via the internet gateway
+- Make the route table public by editing its routes and giving it acces to the internet via the internet gateway
 ![Configuring the route table for internet access](/images/7.configuring-route-table.png)
+
+- Create the Private Route table in thesame way we created the public route table but without attaching an internet gateway to its route. i.e we would not be editing its route to use the internet gateway, however, we would be configuring that NAT Gateway subsequently to give it an outbound access to the internet. This is very important for security reasons.
 
 ## Public and Private subnets with NAT gateway
 
