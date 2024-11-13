@@ -86,7 +86,20 @@ Nat Gateway configuration (Correct configuration of a NAT Gateway for private su
 ## AWS MYSQL RDS Setup
 
 RDS instance creation (Proper creation of Amazon RDS instance with MYSQL engine )
-- Security group configuration
+
+Security group configuration
+
+- at this juncture, we should configure all the other secuirty groups we would be needing for this project
+- The list of the other security group would aside the public and private subnet security Group would include
+- Application Load Balancer Security Group(ALBSG)
+- SSH Security Group(SSHSG)
+- Webserver Security Group (WSSG)
+- Database Security Group (DBSG)
+- EFS Security Group (EFSSG)
+- We would configure a security group for the AWS Mysql RDS database
+- Locate the security group tab under the EC2 services
+- Click on create security group
+![Creating secuirty group for database](/images/create-secuirty-group-for-database.png)
 
 ## Wordpress RDS connection
 
