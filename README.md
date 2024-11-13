@@ -100,6 +100,27 @@ Security group configuration
 - Locate the security group tab under the EC2 services
 - Click on create security group
 ![Creating secuirty group for database](/images/create-secuirty-group-for-database.png)
+- Kindly note that all the other security would follow thesame pattern with the inbound rule specifying the type of traffic and the source to allow
+- Having completed all the secuirty group setup, lets now setup the RDS database
+- Locate the RDS service from the services search bar
+- Locate the create database button and click on it
+![Find the create database button](/images/create-data-base.png)
+- Choose the standard create option
+- Choose engine option as MYSQL
+- Choose Edition as community edition
+- Choose the version you want to work(The lates version preferably)
+- Choose the free tier template for this project
+- Give the database a descriptive identifier(name)
+- Set your prefered master username
+- Provide a master password
+- Reconfirm the password to make sure they match
+- Under the instance configuration, make sure you select the db.t3.micro
+- Select your vpc
+- Select availability zone
+- You can leave other configurations as default
+- Click on the the create database button to create the database
+- NB: It might take some minutes before the database is provisoned and become active
+- After the database becomes active, you have successfully created the database
 
 ## Wordpress RDS connection
 
