@@ -124,8 +124,61 @@ Security group configuration
 
 ## Wordpress RDS connection
 
-- Successful connection of wordpress to RDS database
-  
+- Let's setup our ec2 instance to host our wordpress website
+- Search EC2 servcie from the search bar
+- Click the launch instance button
+- Give the web server a descriptive name
+- Choose your VPC
+- Choose the amazon-linux machine image
+- Choose the private subnet we created earlier to shield the server from direct access to public internet
+- Disable auto-assign public IP as this would not be need for security reasons
+- Choose the exisiting keypair we used for the bastion host previously
+- Select the webservers security we already created
+- Keep all the other settings default for this project
+- Click on the create instance button to create and lunch the instance
+![Create and lunch instance](/images/create-and-lunch-instance.png)
+- We would now proceed to  install wordpress and other utilities that would hook up with database on the server
+- Since our server is in a private subnet and its security group only allows SSH access from the bastion host
+- Lunch the bastion host and SSH into it using SSH Client configuration
+- Once inside the Bastion we can now SSH into the webserver
+- Remember, we already configure the private route-table to use a Nat Gateway. This will enable our instance to have access to the internet so we can install our wordpress and other utilities needed for connection to our database
+- Run the following commands
+
+```bash
+    sudo yum update -y
+    sudo yum install -y httpd php php-mysqlnd
+    wget <https://wordpress.org/latest.tar.gz>
+    tar -xzvf latest.tar.gz
+    sudo mv wordpress/* /var/www/html/
+    sudo chown -R apache:apache /var/www/html
+    sudo chmod -R 755 /var/www/html
+    sudo systemctl enable httpd
+    sudo systemctl start httpd
+
+  ```
+
+- NB: You can put these commands in a script for effciency
+- The wordpress website has been successfully installed and its now running on our server
+
+Now let's connect the webserver to the database we already created
+
+- Create wp-config.php file in the root of the wordpress folder
+- Copy the following configuration into it
+
+  ```php
+    define('DB_NAME', 'yourdbname');
+    define('DB_USER', 'yourdbuser');
+    define('DB_PASSWORD', 'yourdbpassword');
+    define('DB_HOST', 'yourdbendpoint');
+
+  ```
+
+Successful connection of wordpress to RDS database
+
+- Replace your database configuration as required with your database details
+- You can restart your web server to effect the new changes
+- Now the wordpress site have been successfully connected to the database
+
 ## EFS connection for wordpress files
 
 - EFS file system creation (Proper creaton of an EFS file system)
