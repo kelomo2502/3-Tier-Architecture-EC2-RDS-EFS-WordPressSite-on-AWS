@@ -183,7 +183,7 @@ Successful connection of wordpress to RDS database
 
 EFS file system creation (Proper creaton of an EFS file system)
 
-- Search for the EFS servcie from the services search bar
+- Search for the EFS servcie from the services search bar in your AWS console
 - Click on create file system
 - Choose the VPC where the webserver is located, this ensures that our EFS resides in thesame network
 - Choose the availability zones where the web server is located to reduce latency
