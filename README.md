@@ -181,9 +181,38 @@ Successful connection of wordpress to RDS database
 
 ## EFS connection for wordpress files
 
-- EFS file system creation (Proper creaton of an EFS file system)
-- Mounting EFS (Successful mounting of the EFS file system on a wordpress instance)
-- Wordpress configuration (Correct wordpress configuation to use the shared flie system)
+EFS file system creation (Proper creaton of an EFS file system)
+
+- Search for the EFS servcie from the services search bar
+- Click on create file system
+- Choose the VPC where the webserver is located, this ensures that our EFS resides in thesame network
+- Choose the availability zones where the web server is located to reduce latency
+- Choose general purpose as performance mode. this is suitable for web applications
+- Throughput mode should be set to Bursting unless you have specific performance need
+- Enable encryption for data-at-rest security
+- Click create to finish the setup
+- Now the EFS is created successfully
+Mounting EFS (Successful mounting of the EFS file system on a wordpress instance)
+- To successfully mount the EFS file system, we would need to do the following
+- Rememeber we already setup a security group for our EFS which allows NFS access from only the web server secuirty group
+Mount EFS on the web server
+- Install NFS utilities by running `sudo yum install -y amazon-efs-utils`
+- Create a mount directory by running `sudo mkdir -p /var/www/html/wp-content`
+- Also install botocore package which is required to resolve DNS names and communicate with AWS services via the EFS mount helper
+- To install botocore using pip run `sudo yum install -y python3-pip` if not already installed
+- Then run  `sudo pip3 install botocore` to install botocore
+sudo pip3 install botocore
+`
+- Mount the EFS file system by running `sudo mount -t efs fs-xxxxxxx:/ /var/www/html/wp-content`
+- repalce fs-xxxxxxx: with your EFS file system ID
+- use df -h to verify that to confirm EFS file system is mounted correctly
+- Also configure AWS credentials if not done already as this might not allow you EFS file system to mount 
+- Run `aws configure`
+- Then fill in your AWS access key and Secret key
+- Provide your default region
+- You can also provide your default output format
+- Then the configuration is complete
+Wordpress configuration (Correct wordpress configuation to use the shared flie system)
 
 ## Application load balancer and auto scaling
 
