@@ -237,5 +237,16 @@ ALB creation (Successful creation of application load balancer)
 - Select your VPC
 - Select your availability zones(You need at least two diffrent ones in public subnets for better availability and low downtime)
 - Select the Application load balancer secuirty group we created earlier
+- Let's create a target group for our application load balancer
+- Click on the create target group tab
+- Give the target group a descriptive name
+- Choose the target type as instances
+- Choose IP address type as ipv4
+- Choose protocol version HTTP1
+- Leave other settings as default and click
+- Select the servers to be included in the target group
+- Click include as pending below
+![Create target group](/images/create-target-group.png)
+- Click on create target group to create the target group
 - Listener rule configuration (Proper configuration of listener rule for routing traffic to instances)
 - Intergartion with auti scaling
