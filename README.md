@@ -250,3 +250,7 @@ ALB creation (Successful creation of application load balancer)
 - Click on create target group to create the target group
 - Listener rule configuration (Proper configuration of listener rule for routing traffic to instances)
 - Intergartion with auti scaling
+- Go back to the load balancer tab and select the target group we created
+- Leave other settings as default
+- Click on the create load balancer button
+- Now you have successfully created the application load balancer
