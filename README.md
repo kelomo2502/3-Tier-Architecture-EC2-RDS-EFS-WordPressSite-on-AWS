@@ -253,4 +253,5 @@ ALB creation (Successful creation of application load balancer)
 - Go back to the load balancer tab and select the target group we created
 - Leave other settings as default
 - Click on the create load balancer button
+- It might take a couple of minutes to get provisioned
 - Now you have successfully created the application load balancer
