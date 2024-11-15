@@ -206,16 +206,36 @@ sudo pip3 install botocore
 - Mount the EFS file system by running `sudo mount -t efs fs-xxxxxxx:/ /var/www/html/wp-content`
 - repalce fs-xxxxxxx: with your EFS file system ID
 - use df -h to verify that to confirm EFS file system is mounted correctly
-- Also configure AWS credentials if not done already as this might not allow you EFS file system to mount 
+- Also configure AWS credentials if not done already as this might not allow you EFS file system to mount
 - Run `aws configure`
 - Then fill in your AWS access key and Secret key
 - Provide your default region
 - You can also provide your default output format
 - Then the configuration is complete
-Wordpress configuration (Correct wordpress configuation to use the shared flie system)
+
+## Wordpress configuration-Correct wordpress configuation to use the shared flie system
+
+- Ensure the wp-content directory has proper permissions to allow WordPress to write files
+- Run `sudo chown -R apache:apache /var/www/html/wp-content`
 
 ## Application load balancer and auto scaling
 
-- ALB creation (Successful creation of application load balancer)
+For us to see what's happening with our private servers, lets create our load balancer and auto scaling group
+as this will help us to access the webservers and their content
+
+ALB creation (Successful creation of application load balancer)
+
+- Navigate to the load balancer section in the EC2 dashboard
+- Locate the load balancer create button and click on it
+![Locate the load balancer menu](/images/load-balacer-menu.png)
+- Choose application load-balancer and click the create button
+![Choose application load balancer and click create](/images/Choose-application-load-balancer.png)
+- Give your load balancer a descriptive name(e.g BootFastprojectLB)
+- Select scheme as internet facing
+- Select ipv4 for load balancer ip address type
+![Internet facing ](/images/intermet-facing.png)
+- Select your VPC
+- Select your availability zones(You need at least two diffrent ones in public subnets for better availability and low downtime)
+- Select the Application load balancer secuirty group we created earlier
 - Listener rule configuration (Proper configuration of listener rule for routing traffic to instances)
 - Intergartion with auti scaling
