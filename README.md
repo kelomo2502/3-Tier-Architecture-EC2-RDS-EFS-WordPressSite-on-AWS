@@ -242,7 +242,7 @@ ALB creation (Successful creation of application load balancer)
 - Give the target group a descriptive name
 - Choose the target type as instances
 - Choose IP address type as ipv4
-- Choose protocol version HTTP1
+- Choose protocol version HTTP
 - Leave other settings as default and click
 - Select the servers to be included in the target group
 - Click include as pending below
@@ -255,3 +255,4 @@ ALB creation (Successful creation of application load balancer)
 - Click on the create load balancer button
 - It might take a couple of minutes to get provisioned
 - Now you have successfully created the application load balancer
+- 
