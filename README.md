@@ -269,10 +269,10 @@ ALB creation (Successful creation of application load balancer)
 - Security Groups: Attach a security group allowing traffic for your application.
 - IAM Instance Profile: Attach an IAM role if needed.
 - Add user data for initialization scripts if required(UserData)
-
+****
 ``` bash
   
-yum update -y
+yum update -**y**
 sudo yum install -y httpd httpd-tools mod_ssl
 sudo systemctl enable httpd
 sudo systemctl start httpd
