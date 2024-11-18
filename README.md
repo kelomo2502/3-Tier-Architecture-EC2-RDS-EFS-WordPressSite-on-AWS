@@ -255,4 +255,55 @@ ALB creation (Successful creation of application load balancer)
 - Click on the create load balancer button
 - It might take a couple of minutes to get provisioned
 - Now you have successfully created the application load balancer
-- 
+- You need to copy the dns of application load balancer and paste in your browser to see how the load balancer diirect traffic to the application server
+
+## Steps to Create an Auto Scaling Group
+
+- Navigate to the EC2 Dashboard.On the left sidebar, click Launch Templates.
+- Click Create Launch Template.
+- Fill out the required fields:
+- Template Name: Provide a meaningful name (e.g., web-server-template).
+- AMI ID: Choose an Amazon Machine Image (AMI) suitable for your application.
+- Instance Type: Select an instance type (e.g., t2.micro).
+- Key Pair: Select a key pair for SSH access.
+- Security Groups: Attach a security group allowing traffic for your application.
+- IAM Instance Profile: Attach an IAM role if needed.
+- Add user data for initialization scripts if required(UserData)
+- Review and click Create Launch Template.
+
+## Configure the Auto Scaling Group
+
+- Navigate to the Auto Scaling Groups section in the EC2 Dashboard.
+- Click Create Auto Scaling Group.
+- Fill in the details:
+- Name: Provide a meaningful name (e.g., web-server-asg).
+- Launch Template: Select the launch template created earlier.
+- Click Next to configure your ASG.
+
+- Click Attach the Load Balancer In the Load Balancer section:
+- Select the appropriate target group associated with your Load Balancer.
+- Ensure health checks are configured correctly.
+- Click Next.
+- Configure Instance Scaling Policies
+Desired Capacity: Specify the number of instances you want initially.
+Minimum Capacity: Set the minimum number of instances (e.g., 1).
+Maximum Capacity: Define the maximum number of instances (e.g., 5).
+Optional: Add scaling policies to automatically increase or decrease instances based on CPU utilization, memory usage, or other metrics.
+Step 5: Add Notifications (Optional)
+Configure notifications to receive alerts on scaling activities.
+
+- Review and Create the Auto Scaling Group
+- Review all the configurations.
+- Click Create Auto Scaling Group to finalize
+
+## Verification
+
+- Navigate to the Auto Scaling Groups section in the EC2 Dashboard.
+- Verify that your ASG is active and associated instances are running.
+- Check the Load Balancer to confirm instances are registered and healthy.
+
+Additional Notes
+
+- Ensure proper tagging for your ASG, instances, and related resources to maintain organization and facilitate cost allocation.
+- Test scaling policies under load conditions to validate behavior.
+- Regularly monitor ASG activities using AWS CloudWatch.
