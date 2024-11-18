@@ -269,6 +269,29 @@ ALB creation (Successful creation of application load balancer)
 - Security Groups: Attach a security group allowing traffic for your application.
 - IAM Instance Profile: Attach an IAM role if needed.
 - Add user data for initialization scripts if required(UserData)
+
+``` bash
+  
+yum update -y
+sudo yum install -y httpd httpd-tools mod_ssl
+sudo systemctl enable httpd
+sudo systemctl start httpd
+sudo amazon-linux-extras enable php7.4
+sudo yum clean metadata
+sudo yum install php php-common php-pear -y
+sudo yum install php-{cgi,curl,mbstring,gd,mysqlnd,gettext,json,xml,fpm,intl,zip,mysqli} -y
+sudo rpm -Uvh <https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm>
+sudo rpm --import <https://repo.mysql.com/RPM-GPG-KEY-mysql-2022>
+sudo yum install mysql-community-server -y
+sudo systemctl enable mysqld
+sudo systemctl start mysqld
+echo "fs-07d0a7f8f87044530.efs.eu-west-2.amazonaws.com:/ /var/www/html nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2 0 0" >> /etc/fstab
+mount -a
+chown apache:apache -R /var/www/html
+sudo service httpd restart
+
+  ```
+
 - Review and click Create Launch Template.
 
 ## Configure the Auto Scaling Group
